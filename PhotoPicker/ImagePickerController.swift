@@ -76,6 +76,7 @@ extension ImagePickerController: UIImagePickerControllerDelegate, UINavigationCo
         if let delegate = delegate as? ImagePickerControllerDelegate {
             delegate.imagePickerControllerDidCancel(self)
         }
+        picker.dismissViewControllerAnimated(true, completion: nil)
     }
 
 }
