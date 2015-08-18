@@ -74,11 +74,15 @@ extension AlbumViewController {
     }
 
     func fetchCollections() {
-        let result = PHCollectionList.fetchTopLevelUserCollectionsWithOptions(nil)
+        let result1 = PHAssetCollection.fetchAssetCollectionsWithType(.SmartAlbum, subtype: .SmartAlbumUserLibrary, options: nil)
+        let result2 = PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .AlbumRegular, options: nil)
 
         var collections = [PHAssetCollection]()
 
-        result.enumerateObjectsUsingBlock { obj, _, _ in
+        if let collection = result1.firstObject as? PHAssetCollection {
+            collections.append(collection)
+        }
+        result2.enumerateObjectsUsingBlock { obj, _, _ in
             if let collection = obj as? PHAssetCollection {
                 collections.append(collection)
             }
